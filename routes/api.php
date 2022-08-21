@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Http\Request;
+
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -22,5 +23,8 @@ Route::group(['prefix' => 'auth'], function () {
     Route::post('/register', 'Api\Auth\AuthController@register');
     Route::post('/login', 'Api\Auth\AuthController@login');
     Route::post('/logout', 'Api\Auth\AuthController@logout')
+        ->middleware('auth:sanctum');
+
+        Route::post('/password/reset', 'Api\Auth\PasswordController@reset')
         ->middleware('auth:sanctum');
 });
